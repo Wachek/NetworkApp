@@ -32,6 +32,9 @@
                                                 <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="pictureButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="jdi-U8-2Rt"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIX-Ed-e64">
                                         <rect key="frame" x="0.0" y="83" width="180" height="38"/>
@@ -46,6 +49,9 @@
                                                 <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="jokeButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rud-LN-B4V"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -60,18 +66,27 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXg-fp-1No">
-                                <rect key="frame" x="40" y="148" width="240" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXg-fp-1No">
+                                <rect key="frame" x="40" y="148" width="240" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="d4c-8R-fte">
+                                <rect key="frame" x="135" y="135" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="WoI-w8-WeI"/>
+                                    <constraint firstAttribute="height" constant="50" id="kWg-va-JX5"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Hk1-9j-ubh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="6e4-uk-FGr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IXg-fp-1No" secondAttribute="trailing" constant="40" id="Fb3-PV-na8"/>
+                            <constraint firstItem="d4c-8R-fte" firstAttribute="centerY" secondItem="Hk1-9j-ubh" secondAttribute="centerY" id="GEc-eh-r8h"/>
+                            <constraint firstItem="d4c-8R-fte" firstAttribute="centerX" secondItem="Hk1-9j-ubh" secondAttribute="centerX" id="RX4-IF-IQa"/>
                             <constraint firstItem="Hk1-9j-ubh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="SL3-uj-F5O"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Hk1-9j-ubh" secondAttribute="trailing" constant="40" id="Ukh-MM-aZg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="P6h-GP-AYj" secondAttribute="trailing" constant="70" id="UtT-Vs-kaY"/>
@@ -81,6 +96,11 @@
                             <constraint firstItem="IXg-fp-1No" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="wji-Hw-sli"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="d4c-8R-fte" id="nlD-hi-fOQ"/>
+                        <outlet property="dogPictureView" destination="Hk1-9j-ubh" id="Ygt-57-7JP"/>
+                        <outlet property="jokeLabel" destination="IXg-fp-1No" id="22Y-uW-sRy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
