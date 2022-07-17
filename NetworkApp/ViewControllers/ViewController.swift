@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func pictureButtonPressed() {
+        dogPictureView.image = nil
         dogPictureView.isHidden = false
         jokeLabel.text = ""
         activityIndicator.isHidden = false
@@ -31,6 +32,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func jokeButtonPressed() {
+        jokeLabel.text = ""
         dogPictureView.isHidden = true
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
@@ -38,7 +40,7 @@ class ViewController: UIViewController {
     }
     
     private func fetchImage() {
-        guard let url = URL(string: "https://random.dog/c22c077e-a009-486f-834c-a19edcc36a17.jpg") else { return }
+        guard let url = URL(string: "https://random.dog/woof.json") else { return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
@@ -46,14 +48,29 @@ class ViewController: UIViewController {
                 return
             }
             
-            guard let image = UIImage(data: data) else { return }
-            
-            DispatchQueue.main.async {
-                self.dogPictureView.image = image
-                self.activityIndicator.stopAnimating()
+            do {
+                let dog = try JSONDecoder().decode(Dog.self, from: data)
+                guard let imageUrl = URL(string: dog.url) else { return }
+                
+                URLSession.shared.dataTask(with: imageUrl) { data, _, error in
+                    guard let data = data else {
+                        print(error?.localizedDescription ?? "No error description")
+                        return
+                    }
+                    
+                    guard let image = UIImage(data: data) else { return }
+                    
+                    DispatchQueue.main.async {
+                        self.dogPictureView.image = image
+                        self.activityIndicator.stopAnimating()
+                    }
+                }.resume()
+            }catch let error {
+                print(error.localizedDescription)
             }
         }.resume()
     }
+    
     
     private func fetchJoke() {
         guard let url = URL(string: "https://v2.jokeapi.dev/joke/Any?safe-mode") else { return }
@@ -73,7 +90,6 @@ class ViewController: UIViewController {
             } catch let error {
                 print(error.localizedDescription)
             }
-            
             
         }.resume()
     }

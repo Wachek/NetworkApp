@@ -14,6 +14,7 @@
 		8BA0EC1C28842F0C0067165C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0EC1B28842F0C0067165C /* Assets.xcassets */; };
 		8BA0EC1F28842F0C0067165C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0EC1D28842F0C0067165C /* LaunchScreen.storyboard */; };
 		8BA0EC2E288490780067165C /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0EC2D288490780067165C /* Joke.swift */; };
+		8BA0EC30288498E30067165C /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0EC2F288498E30067165C /* Dog.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		8BA0EC1E28842F0C0067165C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8BA0EC2028842F0C0067165C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BA0EC2D288490780067165C /* Joke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
+		8BA0EC2F288498E30067165C /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				8BA0EC2D288490780067165C /* Joke.swift */,
+				8BA0EC2F288498E30067165C /* Dog.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				8BA0EC1728842F040067165C /* ViewController.swift in Sources */,
 				8BA0EC1328842F040067165C /* AppDelegate.swift in Sources */,
 				8BA0EC2E288490780067165C /* Joke.swift in Sources */,
+				8BA0EC30288498E30067165C /* Dog.swift in Sources */,
 				8BA0EC1528842F040067165C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
