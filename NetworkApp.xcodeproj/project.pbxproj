@@ -15,6 +15,7 @@
 		8BA0EC1F28842F0C0067165C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0EC1D28842F0C0067165C /* LaunchScreen.storyboard */; };
 		8BA0EC2E288490780067165C /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0EC2D288490780067165C /* Joke.swift */; };
 		8BA0EC30288498E30067165C /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0EC2F288498E30067165C /* Dog.swift */; };
+		8BA0EC32288731960067165C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0EC31288731950067165C /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		8BA0EC2028842F0C0067165C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BA0EC2D288490780067165C /* Joke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
 		8BA0EC2F288498E30067165C /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
+		8BA0EC31288731950067165C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				8BA0EC2728842F610067165C /* ViewControllers */,
+				8BA0EC33288731A50067165C /* Networking */,
 				8BA0EC2628842F320067165C /* StoryBoards */,
 				8BA0EC2C2884902E0067165C /* Models */,
 				8BA0EC2928842F820067165C /* Support */,
@@ -111,6 +114,14 @@
 				8BA0EC2F288498E30067165C /* Dog.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8BA0EC33288731A50067165C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8BA0EC31288731950067165C /* NetworkManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BA0EC32288731960067165C /* NetworkManager.swift in Sources */,
 				8BA0EC1728842F040067165C /* ViewController.swift in Sources */,
 				8BA0EC1328842F040067165C /* AppDelegate.swift in Sources */,
 				8BA0EC2E288490780067165C /* Joke.swift in Sources */,
