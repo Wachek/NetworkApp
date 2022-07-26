@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         jokeLabel.text = ""
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
-        fetchImage()
+        getDogImage()
     }
     
     @IBAction func jokeButtonPressed() {
@@ -35,41 +35,24 @@ class ViewController: UIViewController {
         dogPictureView.isHidden = true
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
-        fetchJoke()
+        getJoke()
     }
     
-    private func fetchImage() {
-        guard let url = URL(string: "https://random.dog/woof.json") else { return }
-
-        NetworkManager.shared.request(fromURL: url) { (result: Result<Dog, Error>) in
+    private func getDogImage() {
+        NetworkManager.shared.fetchDog("https://random.dog/woof.json") { result in
             switch result {
-            case .success(let success):
-
-//                guard let imageUrl = URL(string: success.url) else { return }
-
-                guard let date = ImageManager.shared.fetchImage(from: success.url) else { return }
+            case .success(let dog):
+                guard let date = ImageManager.shared.fetchImage(from: dog.url) else { return }
                 let dogImage = UIImage(data: date)
                 self.dogPictureView.image = dogImage
                 self.activityIndicator.stopAnimating()
-                
-//                networkManager.imageRequest(fromURL: imageUrl) { (result: Result<UIImage, Error>) in
-//                    switch result {
-//                    case .success(let success):
-//                        self.dogPictureView.image = success
-//                        self.activityIndicator.stopAnimating()
-//                    case .failure(let failure):
-//                        print(failure)
-//                    }
-//                }
-
-            case .failure(let failure):
-                print(failure)
+            case .failure(let error):
+                print(error)
             }
         }
     }
     
-    
-    private func fetchJoke() {
+    private func getJoke() {
         NetworkManager.shared.fetchJoke("https://v2.jokeapi.dev/joke/Any?safe-mode") { result in
             switch result {
             case .success(let joke):
@@ -80,8 +63,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
-
     
 }
 

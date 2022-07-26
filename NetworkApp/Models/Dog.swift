@@ -7,4 +7,8 @@
 
 struct Dog: Decodable {
     let url: String
+    
+    init(dogData: [String: Any]) {
+        url = dogData["url"] as? String ?? ""
+    }
 }

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-//import UIKit
 import Alamofire
 
 class NetworkManager {
@@ -16,7 +15,7 @@ class NetworkManager {
     private init() {}
     
     func fetchJoke(_ url: String, completion: @escaping(Result<Joke, Error>) -> Void) {
-        AF.request("https://v2.jokeapi.dev/joke/Any?safe-mode")
+        AF.request(url)
             .validate()
             .responseJSON { dataResponse in
                 switch dataResponse.result {
@@ -30,49 +29,20 @@ class NetworkManager {
             }
     }
     
-    func request<T: Decodable>(fromURL url: URL, completion: @escaping (Result<T, Error>) -> Void) {
-        
-        let completionOnMain: (Result<T, Error>) -> Void = { result in
-            DispatchQueue.main.async {
-                completion(result)
+    func fetchDog(_ url: String, completion: @escaping(Result<Dog, Error>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                case .success(let value):
+                    guard let dogData = value as? [String: Any] else { return }
+                    let dog = Dog(dogData: dogData)
+                    completion(.success(dog))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            
-            do {
-                let value = try JSONDecoder().decode(T.self, from: data)
-                completionOnMain(.success(value))
-            } catch let error {
-                print(error.localizedDescription)
-                completionOnMain(.failure(error))
-            }
-            
-        }.resume()
     }
-    
-//    func imageRequest<T> (fromURL url: URL, completion: @escaping (Result<T, Error>) -> Void) {
-//        let completionOnMain: (Result<T, Error>) -> Void = { result in
-//            DispatchQueue.main.async {
-//                completion(result)
-//            }
-//        }
-//
-//        URLSession.shared.dataTask(with: url) { data, _, error in
-//            guard let data = data else {
-//                print(error?.localizedDescription ?? "No error description")
-//                return
-//            }
-//
-//            guard let image = UIImage(data: data) else { return }
-//            completionOnMain(.success(image as! T))
-//
-//        }.resume()
-//    }
     
 }
 
