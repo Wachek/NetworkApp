@@ -6,14 +6,13 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
 
     @IBOutlet var dogPictureView: UIImageView!
     @IBOutlet var jokeLabel: UILabel!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,25 +40,28 @@ class ViewController: UIViewController {
     
     private func fetchImage() {
         guard let url = URL(string: "https://random.dog/woof.json") else { return }
-        
-        let networkManager = NetworkManager()
-        
-        networkManager.request(fromURL: url) { (result: Result<Dog, Error>) in
+
+        NetworkManager.shared.request(fromURL: url) { (result: Result<Dog, Error>) in
             switch result {
             case .success(let success):
+
+//                guard let imageUrl = URL(string: success.url) else { return }
+
+                guard let date = ImageManager.shared.fetchImage(from: success.url) else { return }
+                let dogImage = UIImage(data: date)
+                self.dogPictureView.image = dogImage
+                self.activityIndicator.stopAnimating()
                 
-                guard let imageUrl = URL(string: success.url) else { return }
-                
-                networkManager.imageRequest(fromURL: imageUrl) { (result: Result<UIImage, Error>) in
-                    switch result {
-                    case .success(let success):
-                        self.dogPictureView.image = success
-                        self.activityIndicator.stopAnimating()
-                    case .failure(let failure):
-                        print(failure)
-                    }
-                }
-                
+//                networkManager.imageRequest(fromURL: imageUrl) { (result: Result<UIImage, Error>) in
+//                    switch result {
+//                    case .success(let success):
+//                        self.dogPictureView.image = success
+//                        self.activityIndicator.stopAnimating()
+//                    case .failure(let failure):
+//                        print(failure)
+//                    }
+//                }
+
             case .failure(let failure):
                 print(failure)
             }
@@ -68,20 +70,18 @@ class ViewController: UIViewController {
     
     
     private func fetchJoke() {
-        guard let url = URL(string: "https://v2.jokeapi.dev/joke/Any?safe-mode") else { return }
-        
-        let networkManager = NetworkManager()
-        
-        networkManager.request(fromURL: url) { (result: Result<Joke, Error>) in
+        NetworkManager.shared.fetchJoke("https://v2.jokeapi.dev/joke/Any?safe-mode") { result in
             switch result {
-            case .success(let success):
-                self.jokeLabel.text = "\(success.setup)\n\(success.delivery)"
+            case .success(let joke):
+                self.jokeLabel.text = "\(joke.setup)\n\(joke.delivery)"
                 self.activityIndicator.stopAnimating()
-            case .failure(let failure):
-                print(failure)
+            case .failure(let error):
+                print(error)
             }
         }
     }
+    
+
     
 }
 
